@@ -120,7 +120,7 @@ function RegisterPage() {
                                             setFormData({ ...formData, password: e.target.value })
                                         }
                                     />
-                                    <button onClick={() => setShowHidePassword(!showHidePassword)} className="mx-2 absolute right-2 top-1/2 transform -translate-y-1/2 text-sm text-gray-600 hover:text-gray-800">
+                                    <button type="button" onClick={() => setShowHidePassword(!showHidePassword)} className="mx-2 absolute right-2 top-1/2 transform -translate-y-1/2 text-sm text-gray-600 hover:text-gray-800">
                                         {showHidePassword ? "Show" : "Hide"}
                                     </button>
                                 </div>
@@ -156,7 +156,7 @@ function RegisterPage() {
                                 <input
                                     type="file"
                                     onChange={(e) => handleFileChange(e.target.files)}
-                                    className="block w-full text-sm text-gray-600  file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-mediu file:bg-blue-500 file:text-white hover:file:bg-blue-600 cursor-pointer"
+                                    className="block w-full text-sm text-gray-600  file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-mediu file:bg-blue-500 file:text-white hover:file:bg-blue-600 cursor-pointer border border-gray-300 rounded-md p-1"
                                 />
                                 {formData.profilePicture && (
                                     <img

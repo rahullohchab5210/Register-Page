@@ -58,7 +58,7 @@ function Login() {
                                 setLoginData({ ...loginData, password: e.target.value })
                             }
                         />
-                        <button onClick={() => setShowHidePassword(!showHidePassword)} className="mx-2 absolute right-2 top-1/2 transform -translate-y-1/2 text-sm text-gray-600 hover:text-gray-800">
+                        <button type="button" onClick={() => setShowHidePassword(!showHidePassword)} className="mx-2 absolute right-2 top-1/2 transform -translate-y-1/2 text-sm text-gray-600 hover:text-gray-800">
                             {showHidePassword ? "Show" : "Hide"}
                         </button>
                     </div>
