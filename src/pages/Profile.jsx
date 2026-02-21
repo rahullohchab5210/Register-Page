@@ -4,7 +4,7 @@ import Input from "../components/Input";
 
 function Profile() {
     const navigate = useNavigate();
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState({firstName: "", lastName: "", email: "", profilePicture: ""});
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
@@ -23,8 +23,7 @@ function Profile() {
         navigate("/register");
     };
 
-    if (!user) return null;
-
+ 
     return (
         <div>
 

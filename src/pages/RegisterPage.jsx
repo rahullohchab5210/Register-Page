@@ -16,6 +16,7 @@ function RegisterPage() {
     });
 
     const [errors, setErrors] = useState(false);
+    const [imageSize, setImageSize] = useState();
 
     const submit = (e) => {
         e.preventDefault();
@@ -29,7 +30,8 @@ function RegisterPage() {
             formData.password &&
             formData.confirmPassword &&
             formData.profilePicture &&
-            formData.password === formData.confirmPassword
+            formData.password === formData.confirmPassword&&
+               imageSize <= 2    
         ) {
 
             localStorage.setItem("registeredUser", JSON.stringify(formData));
@@ -41,7 +43,11 @@ function RegisterPage() {
     };
 
     const handleFileChange = (value) => {
+
         const file = value[0];
+        const sizeinmb = file.size/1024/1024
+        setImageSize(sizeinmb)
+      
         const image = URL.createObjectURL(file);
 
         setFormData({
@@ -120,8 +126,8 @@ function RegisterPage() {
                                             setFormData({ ...formData, password: e.target.value })
                                         }
                                     />
-                                    <button type="button" onClick={() => setShowHidePassword(!showHidePassword)} className="mx-2 absolute right-2 top-1/2 transform -translate-y-1/2 text-sm text-gray-600 hover:text-gray-800">
-                                        {showHidePassword ? "Show" : "Hide"}
+                                    <button type="button" onClick={() => setShowHidePassword(!showHidePassword)} className="mx-2 cursor-pointerabsolute right-2 top-1/2 transform -translate-y-1/2 text-sm text-gray-600 hover:text-gray-800">
+                                        {showHidePassword ? "Hide" : "Show"}
                                     </button>
                                 </div>
                                 {errors && formData.password === "" && (
@@ -154,6 +160,7 @@ function RegisterPage() {
                             </div>
                             <div>
                                 <input
+                                    accept=".jpg, .jpeg, .png, .webp"
                                     type="file"
                                     onChange={(e) => handleFileChange(e.target.files)}
                                     className="block w-full text-sm text-gray-600  file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-mediu file:bg-blue-500 file:text-white hover:file:bg-blue-600 cursor-pointer border border-gray-300 rounded-md p-1"
@@ -164,8 +171,14 @@ function RegisterPage() {
                                         alt="Profile"
                                         className="w-40 h-40 object-cover mt-2"
                                     />
+
                                 )}
+                                <div className="flex justify-between">
+                                    {errors && formData.profilePicture ==="" && (<span className="text-red-500">profile is required</span>) || (imageSize > 2 &&  (<p className="text-red-500">Image must be less than 2MB</p>))} 
+                                    {imageSize && <span className="">{imageSize + "mb"}</span>}
+                                </div>
                             </div>
+                           
 
                         </div>
                         <button
